@@ -9,18 +9,53 @@
 import UIKit
 import FirebaseAuth
 
+var currentUser:FIRUser?
+var currentAuth:FIRAuth?
 
 
-class ViewController: UIViewController {
+class LoginPage: UIViewController {
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.hideKeyboardWhenTappedAround()
+        currentAuth = FIRAuth.auth()
+        passwordField.isSecureTextEntry = true;
+    }
+    @IBAction func loginPressed(_ sender: Any) {
+        
+        //check for the two text fields
+        
+        if emailField.text! == "" {
+            //alert email
+            emailField.placeholder = "Oops! You missed this!, email please!"
+        }
+        if passwordField.text! == "" {
+            //alert password
+            //passwordField.borderStyle = UITextBorderStyle.line
+            passwordField.placeholder = "Oops! You missed this!, password please!"
+        }
+        if emailField.text! != "" && passwordField.text! != "" {
+            currentAuth?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: {(user,error) in
+                //you have user and error values
+                if error != nil {
+                    self.emailField.text = ""
+                    self.passwordField.text = ""
+                    self.emailField.placeholder = "Eek! Try again?, email please!"
+                    self.passwordField.placeholder = "Eek! Try again?, password please!"
+                }else{
+                    currentUser = user!
+                }
+            })
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
 

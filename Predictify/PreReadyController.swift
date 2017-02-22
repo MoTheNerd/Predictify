@@ -6,4 +6,24 @@
 //  Copyright © 2017 Mohammad Al-Ahdal. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import FirebaseAuth
+
+class PreReadyController:UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if currentUser != nil {
+            // go in
+            
+        }
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        //getridofshit
+    }
+    
+}

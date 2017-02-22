@@ -43,7 +43,8 @@ class Home:UIViewController {
         nameLabel.text = "Hey, \(nameString)!"
         nameLabel.sizeToFit()
         nameLabel.center.x = self.view.bounds.midX
-        nameLabel.textColor = UIColor(hex: 0xffffff)
+        nameLabel.textColor = UIColor.white
+        
     }
     
     override func didReceiveMemoryWarning() {

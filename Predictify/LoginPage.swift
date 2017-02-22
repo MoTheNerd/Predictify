@@ -26,6 +26,9 @@ class LoginPage: UIViewController {
         currentAuth = FIRAuth.auth()
         passwordField.isSecureTextEntry = true;
         
+        emailField.attributedPlaceholder = NSAttributedString(string: emailField.placeholder!, attributes: [NSForegroundColorAttributeName : UIColor(hex: 0xffffff, alpha: 0.7)])
+        passwordField.attributedPlaceholder = NSAttributedString(string: passwordField.placeholder!, attributes: [NSForegroundColorAttributeName : UIColor(hex: 0xffffff, alpha: 0.7)])
+        
         emailField.text = "malahdal@ualberta.ca"
         passwordField.text = "hack2017"
     }
@@ -42,11 +45,15 @@ class LoginPage: UIViewController {
         if emailField.text! == "" {
             //alert email
             emailField.placeholder = "Oops! You missed this!, email please!"
+            emailField.attributedPlaceholder = NSAttributedString(string: emailField.placeholder!, attributes: [NSForegroundColorAttributeName : UIColor(hex: 0xffffff, alpha: 0.7)])
+            passwordField.attributedPlaceholder = NSAttributedString(string: passwordField.placeholder!, attributes: [NSForegroundColorAttributeName : UIColor(hex: 0xffffff, alpha: 0.7)])
         }
         if passwordField.text! == "" {
             //alert password
             //passwordField.borderStyle = UITextBorderStyle.line
             passwordField.placeholder = "Oops! You missed this!, password please!"
+            emailField.attributedPlaceholder = NSAttributedString(string: emailField.placeholder!, attributes: [NSForegroundColorAttributeName : UIColor(hex: 0xffffff, alpha: 0.7)])
+            passwordField.attributedPlaceholder = NSAttributedString(string: passwordField.placeholder!, attributes: [NSForegroundColorAttributeName : UIColor(hex: 0xffffff, alpha: 0.7)])
         }
         if emailField.text! != "" && passwordField.text! != "" {
             currentAuth?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: {(user,error) in
@@ -56,6 +63,8 @@ class LoginPage: UIViewController {
                     self.passwordField.text = ""
                     self.emailField.placeholder = "Eek! Try again?, email please!"
                     self.passwordField.placeholder = "Eek! Try again?, password please!"
+                    self.emailField.attributedPlaceholder = NSAttributedString(string: self.emailField.placeholder!, attributes: [NSForegroundColorAttributeName : UIColor(hex: 0xffffff, alpha: 0.7)])
+                    self.passwordField.attributedPlaceholder = NSAttributedString(string: self.passwordField.placeholder!, attributes: [NSForegroundColorAttributeName : UIColor(hex: 0xffffff, alpha: 0.7)])
                 }else{
                     currentUser = user!
                     //perform segue
@@ -70,6 +79,10 @@ class LoginPage: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
 

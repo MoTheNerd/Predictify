@@ -37,7 +37,7 @@ class CustomTabBarItem: UIView {
         
         iconView.image = image
         iconView.sizeToFit()
-        iconView.tintColor = UIColor.blackColor()
+        iconView.tintColor = UIColor.black
         
         self.addSubview(iconView)
     }

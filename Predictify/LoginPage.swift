@@ -24,6 +24,12 @@ class LoginPage: UIViewController {
         currentAuth = FIRAuth.auth()
         passwordField.isSecureTextEntry = true;
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        emailField.borderStyle = UITextBorderStyle.none
+        passwordField.borderStyle = UITextBorderStyle.none
+    }
+    
     @IBAction func loginPressed(_ sender: Any) {
         
         //check for the two text fields
@@ -47,6 +53,8 @@ class LoginPage: UIViewController {
                     self.passwordField.placeholder = "Eek! Try again?, password please!"
                 }else{
                     currentUser = user!
+                    //perform segue
+                    self.performSegue(withIdentifier: "loginSuccess", sender: self)
                 }
             })
         }

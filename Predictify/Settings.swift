@@ -6,4 +6,15 @@
 //  Copyright © 2017 Mohammad Al-Ahdal. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class Settings:UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor(hex: 0x87BBA2)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+}

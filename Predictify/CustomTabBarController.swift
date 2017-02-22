@@ -14,8 +14,8 @@ class CustomTabBarViewController: UITabBarController, CustomTabBarDataSource, Cu
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.tabBar.hidden = true
-        self.selectedIndex = 1
+        self.tabBar.isHidden = true
+        self.selectedIndex = 0
         self.delegate = self
         
         let customTabBar = CustomTabBar(frame: self.tabBar.frame)
@@ -40,9 +40,13 @@ class CustomTabBarViewController: UITabBarController, CustomTabBarDataSource, Cu
     
     // MARK: - UITabBarControllerDelegate
     
-    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         return CustomTabAnimatedTransitioning()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 
 }

@@ -50,11 +50,114 @@
                         <outlet property="emailField" destination="sPb-90-HEV" id="pDZ-Zd-bPf"/>
                         <outlet property="loginButton" destination="cJj-dc-w5a" id="Pv5-oq-54S"/>
                         <outlet property="passwordField" destination="z6P-KW-rcH" id="oA2-LD-FcW"/>
+                        <segue destination="Fpp-RU-DDk" kind="show" identifier="loginSuccess" id="dxE-2y-I09"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-167.19999999999999" y="17.541229385307346"/>
         </scene>
+        <!--1-->
+        <scene sceneID="1oY-xy-8w8">
+            <objects>
+                <viewController title="1" id="dVM-DM-szK" customClass="Add" customModule="Predictify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cJc-qH-bLW"/>
+                        <viewControllerLayoutGuide type="bottom" id="pHf-Lc-Xri"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lB2-FE-RXJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="Add" selectedImage="Add" id="Qhb-xc-Mob"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Byn-Lj-1C0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1468" y="332"/>
+        </scene>
+        <!--3-->
+        <scene sceneID="Zpo-Xc-ydz">
+            <objects>
+                <viewController title="3" id="Zq2-Qw-Vxp" customClass="Settings" customModule="Predictify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NeK-qp-RLA"/>
+                        <viewControllerLayoutGuide type="bottom" id="vmv-cx-ws0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="czj-z7-HDk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="Settings" selectedImage="Settings" id="Wt8-ut-kI5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cja-9w-E29" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="49" y="833"/>
+        </scene>
+        <!--0-->
+        <scene sceneID="rkT-xt-RIa">
+            <objects>
+                <viewController title="0" id="w1V-Ik-CSM" customClass="Home" customModule="Predictify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8hW-pX-KVF"/>
+                        <viewControllerLayoutGuide type="bottom" id="wCi-bI-0ls"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JLE-yr-cHo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="Home" selectedImage="Home" id="XYN-5A-eMz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7hp-eQ-goL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1468" y="-321"/>
+        </scene>
+        <!--2-->
+        <scene sceneID="kiO-hX-2YC">
+            <objects>
+                <viewController title="2" id="Af8-mG-wEn" customClass="Notifications" customModule="Predictify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gZL-xr-G9U"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xbm-RB-GCc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jne-yG-Hf4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="Notifications" selectedImage="Notifications" id="vqq-db-1VF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6rH-WA-xLv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799" y="833"/>
+        </scene>
+        <!--Custom Tab Bar View Controller-->
+        <scene sceneID="cqn-2v-9Ya">
+            <objects>
+                <tabBarController id="Fpp-RU-DDk" customClass="CustomTabBarViewController" customModule="Predictify" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Br8-mq-HVm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="w1V-Ik-CSM" kind="relationship" relationship="viewControllers" id="eCt-o0-aCb"/>
+                        <segue destination="dVM-DM-szK" kind="relationship" relationship="viewControllers" id="hZe-y9-oMD"/>
+                        <segue destination="Af8-mG-wEn" kind="relationship" relationship="viewControllers" id="Rs2-w1-H9p"/>
+                        <segue destination="Zq2-Qw-Vxp" kind="relationship" relationship="viewControllers" id="Fwl-vM-Bxc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Amk-6m-kll" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="577" y="18"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Add" width="20" height="20"/>
+        <image name="Home" width="30" height="23"/>
+        <image name="Notifications" width="28" height="17"/>
+        <image name="Settings" width="26" height="28"/>
+    </resources>
 </document>

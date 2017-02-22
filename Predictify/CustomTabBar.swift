@@ -37,7 +37,7 @@ class CustomTabBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.brownColor()
+        self.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,27 +46,28 @@ class CustomTabBar: UIView {
     
     func setup() {
         // get tab bar items from default tab bar
-        tabBarItems = datasource.tabBarItemsInCustomTabBar(self)
+        tabBarItems = datasource.tabBarItemsInCustomTabBar(tabBarView: self)
         
         customTabBarItems = []
         tabBarButtons = []
         
-        initialTabBarItemIndex = 1
+        initialTabBarItemIndex = 0
         selectedTabBarItemIndex = initialTabBarItemIndex
         
-        slideAnimationDuration = 0.6
+        slideAnimationDuration = 0.3
         slideMaskDelay = slideAnimationDuration / 2
         
         let containers = createTabBarItemContainers()
         
-        createTabBarItemSelectionOverlay(containers)
-        createTabBarItemSelectionOverlayMask(containers)
-        createTabBarItems(containers)
+        createTabBarItemSelectionOverlay(containers: containers)
+        createTabBarItemSelectionOverlayMask(containers: containers)
+        createTabBarItems(containers: containers)
+        self.customTabBarItems[0].frame.origin.y -= 10
     }
     
     func createTabBarItemSelectionOverlay(containers: [CGRect]) {
         
-        let overlayColors = [UIColor.redColor(), UIColor.orangeColor(), UIColor.yellowColor()]
+        let overlayColors = [UIColor.clear, UIColor.clear, UIColor.clear, UIColor.clear]
         
         for index in 0..<tabBarItems.count {
             let container = containers[index]
@@ -88,9 +89,9 @@ class CustomTabBar: UIView {
         let rightOverlaySlidingMultiplier = CGFloat(initialTabBarItemIndex + 1) * tabBarItemWidth
         
         leftMask = UIView(frame: CGRect(x: 0, y: 0, width: leftOverlaySlidingMultiplier, height: self.frame.height))
-        leftMask.backgroundColor = UIColor.brownColor()
+        leftMask.backgroundColor = UIColor.clear
         rightMask = UIView(frame: CGRect(x: rightOverlaySlidingMultiplier, y: 0, width: tabBarItemWidth * CGFloat(tabBarItems.count - 1), height: self.frame.height))
-        rightMask.backgroundColor = UIColor.brownColor()
+        rightMask.backgroundColor = UIColor.clear
         
         self.addSubview(leftMask)
         self.addSubview(rightMask)
@@ -104,13 +105,13 @@ class CustomTabBar: UIView {
             let container = containers[index]
             
             let customTabBarItem = CustomTabBarItem(frame: container)
-            customTabBarItem.setup(item)
+            customTabBarItem.setup(item: item)
             
             self.addSubview(customTabBarItem)
             customTabBarItems.append(customTabBarItem)
             
             let button = UIButton(frame: CGRect(x: 0, y: 0, width: container.width, height: container.height))
-            button.addTarget(self, action: #selector(CustomTabBar.barItemTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(barItemTapped(sender:)), for: UIControlEvents.touchUpInside)
             
             customTabBarItem.addSubview(button)
             tabBarButtons.append(button)
@@ -118,7 +119,7 @@ class CustomTabBar: UIView {
             index += 1
         }
         
-        self.customTabBarItems[initialTabBarItemIndex].iconView.tintColor = UIColor.blueColor()
+        self.customTabBarItems[initialTabBarItemIndex].iconView.tintColor = UIColor.blue
     }
     
     func createTabBarItemContainers() -> [CGRect] {
@@ -127,7 +128,7 @@ class CustomTabBar: UIView {
         
         // create container for each tab bar item
         for index in 0..<tabBarItems.count {
-            let tabBarContainer = createTabBarContainer(index)
+            let tabBarContainer = createTabBarContainer(index: index)
             containerArray.append(tabBarContainer)
         }
         
@@ -142,7 +143,7 @@ class CustomTabBar: UIView {
         return tabBarContainerRect
     }
     
-    func animateTabBarSelection(from from: Int, to: Int) {
+    func animateTabBarSelection(from: Int, to: Int) {
         
         let overlaySlidingMultiplier = CGFloat(to - from) * tabBarItemWidth
         
@@ -157,24 +158,28 @@ class CustomTabBar: UIView {
             rightMaskDelay = slideMaskDelay
         }
         
-        UIView.animateWithDuration(slideAnimationDuration - leftMaskDelay, delay: leftMaskDelay, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animate(withDuration: slideAnimationDuration - leftMaskDelay, delay: leftMaskDelay, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.leftMask.frame.size.width += overlaySlidingMultiplier
             }, completion: nil)
         
-        UIView.animateWithDuration(slideAnimationDuration - rightMaskDelay, delay: rightMaskDelay, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animate(withDuration: slideAnimationDuration - rightMaskDelay, delay: rightMaskDelay, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.rightMask.frame.origin.x += overlaySlidingMultiplier
             self.rightMask.frame.size.width += -overlaySlidingMultiplier
-            self.customTabBarItems[from].iconView.tintColor = UIColor.blackColor()
-            self.customTabBarItems[to].iconView.tintColor = UIColor.blueColor()
+            self.customTabBarItems[from].iconView.tintColor = UIColor.black
+            self.customTabBarItems[to].iconView.tintColor = UIColor.blue
+            self.customTabBarItems[to].frame.origin.y -= 10
+            self.customTabBarItems[from].frame.origin.y += 10
             }, completion: nil)
+        
+        
         
     }
     
     func barItemTapped(sender : UIButton) {
-        let index = tabBarButtons.indexOf(sender)!
+        let index = tabBarButtons.index(of: sender)!
         
         animateTabBarSelection(from: selectedTabBarItemIndex, to: index)
         selectedTabBarItemIndex = index
-        delegate.didSelectViewController(self, atIndex: index)
+        delegate.didSelectViewController(tabBarView: self, atIndex: index)
     }
 }

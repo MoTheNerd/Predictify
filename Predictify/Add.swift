@@ -18,4 +18,9 @@ class Add:UIViewController {
         super.didReceiveMemoryWarning()
         
     }
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 }

@@ -7,10 +7,24 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
+
+
+
+func initDatabase(){
+    currentDatabase = FIRDatabase.database().reference().ref
+    //currentDatabase?.child("users").child((currentUser?.uid)!).child("schedule").child("\((currentUser?.uid)!)1").
+    
+}
 
 class Home:UIViewController {
+    @IBOutlet weak var nameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameLabel.text = "N/A"
         self.view.backgroundColor = UIColor(hex: 0x364958)
     }
     
@@ -18,5 +32,7 @@ class Home:UIViewController {
         super.didReceiveMemoryWarning()
         
     }
+    
+    
     
 }

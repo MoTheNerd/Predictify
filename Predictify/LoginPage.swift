@@ -8,9 +8,11 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 var currentUser:FIRUser?
 var currentAuth:FIRAuth?
+var currentDatabase:FIRDatabaseReference?
 
 
 class LoginPage: UIViewController {
@@ -23,6 +25,9 @@ class LoginPage: UIViewController {
         self.hideKeyboardWhenTappedAround()
         currentAuth = FIRAuth.auth()
         passwordField.isSecureTextEntry = true;
+        
+        emailField.text = "malahdal@ualberta.ca"
+        passwordField.text = "hack2017"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,6 +60,7 @@ class LoginPage: UIViewController {
                     currentUser = user!
                     //perform segue
                     self.performSegue(withIdentifier: "loginSuccess", sender: self)
+                    initDatabase()
                 }
             })
         }

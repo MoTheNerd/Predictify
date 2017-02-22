@@ -24,6 +24,7 @@ class CustomTabBarViewController: UITabBarController, CustomTabBarDataSource, Cu
         customTabBar.setup()
         
         self.view.addSubview(customTabBar)
+        self.hideKeyboardWhenTappedAround()
     }
     
     // MARK: - CustomTabBarDataSource
